@@ -301,6 +301,8 @@ function isodatetime() {
     var hour = today.getHours();
     var hourUTC = today.getUTCHours();
     var diff = hour - hourUTC;
+    if(diff > 12) diff -= 24; // Fix the problem for town with real negative diff
+    if(diff <= -12) diff += 24; // Fix the problem for town with real positive diff
     var hourdifference = Math.abs(diff);
     var minute = today.getMinutes();
     var minuteUTC = today.getUTCMinutes();
